@@ -55,13 +55,13 @@ if streamlit.button('Get Fruit Load List'):
     my_cnx = snowflake.connector.connect(**streamlit.secrets["snowflake"])
     my_data_rows = get_fruit_load_list()
     streamlit.dataframe(my_data_rows)
+    
+#Dont run anything past while we troubleshoot
+streamlit.stop()
 
 #New section to display
 fruit_choice = streamlit.text_input('What fruit would you like to add?','jackfruit')
 streamlit.write('Thanks for adding ', fruit_choice)
-
-#Dont run anything past while we troubleshoot
-streamlit.stop()
 
 #This will not work correctly but just go with it for now
 my_cur.execute("insert into PC_RIVERY_DB.PUBLIC.FRUIT_LOAD_LIST values('from streamlit')")
